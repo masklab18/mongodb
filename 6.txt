@@ -1,0 +1,38 @@
+6. To query all documents in JSON format and query based on criteria in MongoDB, follow these steps:
+net start MongoDB
+
+mongosh
+use myDatabase
+db.users.insertMany([
+{ name: "John Doe", age: 25, city: "Mangalore" },
+{ name: "Alice", age: 22, city: "Bangalore" },
+{ name: "Bob", age: 30, city: "Delhi" },
+{ name: "Charlie", age: 27, city: "Mumbai" }
+])
+
+db.users.find().pretty()
+-------------------Query by Exact Match------------------
+db.users.find({ city: "Bangalore" }).pretty()
+------------------------------------Query Using Comparison Operators-----------
+db.users.find({ age: { $gt: 25 } }).pretty()
+
+------------Query with Logical Operators-----------------------
+
+db.users.find({ $or: [{ city: "Bangalore" }, { city: "Mumbai" }] }).pretty()
+
+
+---------------- Query with Specific Fields-----------------
+db.users.find({}, { _id: 0, name: 1, age: 1 }).pretty()
+
+
+------------------------Query with Regex (Pattern Matching)----------------
+
+db.users.find({ name: /^A/ }).pretty()
+
+----------------------------Query with Sorting-------------
+
+db.users.find().sort({ age: -1 }).pretty()
+
+
+-------------------------------Query with Limit and Skip----------------
+db.users.find().skip(1).limit(2).pretty()

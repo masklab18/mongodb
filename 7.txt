@@ -1,0 +1,27 @@
+7. To update a document in MongoDB using the updateOne() and save() methods, follow these steps:
+
+net start MongoDB
+
+mongosh
+use myDatabase
+
+db.users.find().pretty()
+
+------------------ updateOne()--------------
+
+db.users.updateOne(
+{ name: "John Doe" }, // Search criteria
+{ $set: { age: 30 } } // Update operation
+)
+
+db.users.find({ name: "John Doe" }).pretty()
+
+
+-----------------------replaceOne() ------------
+
+db.users.replaceOne(
+{ _id: ObjectId("67b6356f72216bfa97548fba") },
+{ name: "John Doe", age: 35, city: "Mumbai" }
+)
+
+db.users.find().pretty()

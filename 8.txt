@@ -1,0 +1,30 @@
+8. delete documents using the latest MongoDB methods (deleteOne() and deleteMany()).
+
+net start MongoDB
+
+mongosh
+use myDatabase
+
+db.users.insertMany([
+{ name: "John Doe", age: 25, city: "Mangalore" },
+{ name: "Alice", age: 22, city: "Bangalore" },
+{ name: "Bob", age: 30, city: "Delhi" },
+{ name: "Charlie", age: 27, city: "Bangalore" }
+])
+
+db.users.find().pretty()
+
+
+-----------------deleteOne()-----------------
+db.users.deleteOne({ name: "John Doe" })
+db.users.find({ name: "John Doe" }).pretty()
+
+
+----------------delete all documents that match a condition, use deleteMany()------------
+db.users.deleteMany({ city: "Bangalore" })
+db.users.find({ city: "Bangalore" }).pretty()
+
+----------------------------delete all documents but keep the collection structure:------
+db.users.deleteMany({})
+
+db.users.drop()

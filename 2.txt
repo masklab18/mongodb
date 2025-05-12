@@ -1,0 +1,16 @@
+2. To create and drop a database in MongoDB
+net start MongoDB
+
+mongosh
+
+show dbs
+
+use myDatabase
+
+db.users.insertOne({ name: "John Doe", age: 25 })
+
+show dbs
+show collections
+use myDatabase
+db.dropDatabase()
+show dbs

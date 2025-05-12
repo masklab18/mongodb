@@ -1,0 +1,38 @@
+9. MongoDB Projection
+
+net start MongoDB
+
+mongosh
+use myDatabase
+
+
+db.users.insertMany([
+{ name: "John Doe", age: 25, city: "Mangalore", email: "john.doe@example.com" },
+{ name: "Alice", age: 22, city: "Bangalore", email: "alice@example.com" },
+{ name: "Bob", age: 30, city: "Delhi", email: "bob@example.com" },
+{ name: "Charlie", age: 27, city: "Bangalore", email: "charlie@example.com" }
+])
+
+db.users.find().pretty()
+
+
+----------------------: Projection to Include Specific Fields----------------------
+--------------------To fetch only name and age, excluding _id, use:---------
+
+db.users.find({}, { name: 1, age: 1, _id: 0 }).pretty()
+
+-----------------------Exclude a Specific Field
+To exclude the email field but keep everything else:
+-----------------------------------------------
+
+
+db.users.find({}, { email: 0 }).pretty()
+
+
+----------------------------------Projection with Query Condition
+To get only name and age for users from Mangalore:---------------------------------
+db.users.find({ city: "Mangalore" }, { name: 1, age: 1, _id: 0 }).pretty()
+  ----------------------------------------------Using Projection with Sorting
+To retrieve only name and age, sorted by age in descending order:--------------
+
+db.users.find({}, { name: 1, age: 1, _id: 0 }).sort({ age: -1 }).pretty()

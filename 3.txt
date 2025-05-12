@@ -1,0 +1,9 @@
+3. To create a collection in MongoDB, follow these step-by-step instructions:
+net start MongoDB
+mongosh
+use myDatabase
+db.createCollection("admin")
+db.createCollection("logs", { capped: true, size: 10000, max: 500 })             --->(optional)
+db.products.insertOne({ name: "Laptop", price: 75000 })
+show collections
+

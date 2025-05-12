@@ -1,0 +1,18 @@
+5. To insert a document into a MongoDB collection, follow these steps.
+
+net start MongoDB
+
+mongosh
+use myDatabase
+
+db.users.insertOne({ name: "John Doe", age: 25, city: "Mangalore" })   ---->To insert a single document into a collection, use:
+db.users.find().pretty()   ---->To check if the document was inserted:
+
+-------Insert Multiple Documents----
+db.users.insertMany([
+{ name: "Alice", age: 22, city: "Bangalore" },
+{ name: "Bob", age: 30, city: "Delhi" },
+{ name: "Charlie", age: 27, city: "Mumbai" }
+])
+
+db.users.find().pretty()
