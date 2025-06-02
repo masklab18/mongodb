@@ -1,0 +1,42 @@
+Testing Index Performance in MongoDB (Proof of Improvement) (Appendix)
+
+1. Insert a Large Number of Documents (for Testing)
+
+
+for (let i = 0; i < 10000; i++) {
+db.users.insertOne({
+name: "User" + i,
+age: Math.floor(Math.random() * 50) + 20,
+city: ["Mangalore"
+,
+"Bangalore"
+,
+"Delhi"
+,
+"Mumbai"][Math.floor(Math.random() * 4)],
+email: "user" + i + "@example.com"
+});
+}
+
+
+
+2. Check the Number of Documents
+
+
+
+db.users.countDocuments()
+
+
+
+Step 1: Query Execution WITHOUT Index
+
+
+
+db.users.find({ name: "User5000" }).explain("executionStats")
+
+Step 2: Create an Index
+
+db.users.createIndex({ name: 1 })
+
+db.users.find({ name: "User5000" }).explain("executionStats")
+
