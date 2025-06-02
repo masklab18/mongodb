@@ -1,0 +1,55 @@
+11. MongoDB Indexing
+
+
+mongosh
+
+use myDatabase
+db.users.insertMany([
+{ name: "John Doe"
+, age: 25, city: "Mangalore"
+, email: "john.doe@example.com" },
+{ name: "Alice"
+, age: 22, city: "Bangalore"
+, email: "alice@example.com" },
+{ name: "Bob"
+, age: 30, city: "Delhi"
+, email: "bob@example.com" },
+{ name: "Charlie"
+, age: 27, city: "Bangalore"
+, email: "charlie@example.com" }
+])
+
+db.users.find().pretty()
+
+
+//Create an Index on a Single Field
+db.users.createIndex({ name: 1 })
+
+//Create a Compound Index (Multiple Fields)
+db.users.createIndex({ city: 1, age: -1 })
+
+
+//Create a Unique Index
+db.users.createIndex({ email: 1 }, { unique: true })
+
+//Find Existing Indexes
+//To check all indexes on a collection:
+db.users.getIndexes()
+
+//Drop an Index
+//To remove a specific index:
+db.users.dropIndex("name_1")
+
+db.users.dropIndex({ city: 1, age: -1 })
+
+
+//Drop All Indexes
+//To remove all indexes except the default _id index:
+db.users.dropIndexes()
+
+
+
+
+
+
+
